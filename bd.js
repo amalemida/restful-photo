@@ -23,7 +23,7 @@ async function estrutureSe ()
     const conexao = await getConexao ();
     if (conexao==undefined) return null;
 
-    const sql = 'CREATE TABLE IF NOT EXISTS fotos (codigo TINYINT UNSIGNED, nome VARCHAR(60) NOT NULL, preco FLOAT NOT NULL, PRIMARY KEY (codigo))';
+    const sql = 'CREATE TABLE IF NOT EXISTS fotos (id TINYINT UNSIGNED AUTO_INCREMENT, ra INT NOT NULL, longi GEOMETRY , lat GEOMETRY , data VARCHAR(20), imagem LONGBLOB, PRIMARY KEY (id))';
     
     try
     {

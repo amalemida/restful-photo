@@ -3,7 +3,7 @@ module.exports = {
   // NODE_MYSQL_SERVIDOR e faça ela valer o nome ou o
   // endereço IP da máquina que executa o MySQL (se for
   // uma instalação local, faça ela valer LOCALHOST)
-  host: 'regulus',
+  host: 'regulus.cotuca.unicamp.br',
 
   // crie uma variável de ambiente no Windows chamada
   // NODE_MYSQL_USUARIO e faça ela valer o seu login
