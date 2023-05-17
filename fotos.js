@@ -26,7 +26,7 @@ async function atualize (foto)
     try
     {
         const sql   = 'UPDATE fotos SET ra=?,longi=?,lat=?,data=?,imagem=? WHERE id=?';
-        const dados = [foto.longi,foto.lat,foto.data,foto.imagem,foto.ra];
+        const dados = [foto.ra,foto.longi,foto.lat,foto.data,foto.imagem];
         await conexao.query (sql,dados);
         return true;
     }

@@ -53,30 +53,29 @@ class Foto {
     }
 
     set longi(longi) {
-       /* if (longi === undefined || typeof longi !== 'geometry' || longi === "")
-            throw ('longi inválido');*/
+       if (longi === undefined || typeof longi !== 'string' || longi === "")
+            throw ('longi inválido');
 
         this.#longi = longi;
     }
 
     set lat(lat) {
-        /*if (lat === undefined || typeof lat !== 'geometry' || lat === "")
-            throw ('lat inválido');*/
+        if (lat === undefined || typeof lat !== 'string' || lat === "")
+            throw ('lat inválido');
 
         this.#lat = lat;
     }
 
     set data(data) {
-       /*if (data === undefined || typeof data !== 'string' || data === "")
-
-            throw ('data inválido');*/
+       if(data === undefined || typeof data !== 'string' || data === "")
+            throw ('data inválido');
 
         this.#data = data;
     }
 
     set imagem(imagem) {
-       /* if (imagem === undefined || typeof imagem !== 'longblob' || imagem === "")
-            throw ('imagem inválido');*/
+       if (imagem === undefined || typeof imagem !== 'string' || imagem === "")
+            throw ('imagem inválido');
 
         this.#imagem = imagem;
     }

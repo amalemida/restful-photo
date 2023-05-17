@@ -64,53 +64,52 @@ async function atualizacao (req, res)
         return res.status(422).json(erro);
     }
 
-    const ra = req.params.ra;
-    
-    if (ra!=foto.ra)
-    {
-        const erro = Comunicado.novo('TMC','Mudança de código','Tentativa de mudar o código do foto').object;
-        return res.status(400).json(erro);    
-    }
+    const id = req.params.id;
+     
+    // if (id!=foto.id)
+    // {
+    //     const erro = Comunicado.novo('TMC','Mudança de código','Tentativa de mudar o código do foto').object;
+    //     return res.status(400).json(erro);    
+    // }
     
     let ret = await Fotos.recupereUm(id);
+    // if (ret===null)
+    // {
+    //     const  erro = Comunicado.novo('CBD','Sem conexão com o BD','Não foi possível estabelecer conexão com o banco de dados').object;
+    //     return res.status(500).json(erro);
+    // }
 
-    if (ret===null)
-    {
-        const  erro = Comunicado.novo('CBD','Sem conexão com o BD','Não foi possível estabelecer conexão com o banco de dados').object;
-        return res.status(500).json(erro);
-    }
+    // if (ret===false)
+    // {
+    //     const  erro = Comunicado.novo('FNC','Falha no comando SQL','O comando SQL apresenta algum erro').object;
+    //     return res.status(409).json(erro);
+    // }
 
-    if (ret===false)
-    {
-        const  erro = Comunicado.novo('FNC','Falha no comando SQL','O comando SQL apresenta algum erro').object;
-        return res.status(409).json(erro);
-    }
-
-    if (ret.length==0)
-    {
-        const erro = Comunicado.novo('LNE','Foto inexistente','Não há foto cadastrado com o código informado').object;
-        return res.status(404).json(erro);
-    }
+    // if (ret.length==0)
+    // {
+    //     const erro = Comunicado.novo('LNE','Foto inexistente','Não há foto cadastrado com o código informado').object;
+    //     return res.status(404).json(erro);
+    // }
 
     ret = await Fotos.atualize(foto);
 
-    if (ret===null)
-    {
-        const  erro = Comunicado.novo('CBD','Sem conexão com o BD','Não foi possível estabelecer conexão com o banco de dados').object;
-        return res.status(500).json(erro);
-    }
+    // if (ret===null)
+    // {
+    //     const  erro = Comunicado.novo('CBD','Sem conexão com o BD','Não foi possível estabelecer conexão com o banco de dados').object;
+    //     return res.status(500).json(erro);
+    // }
 
-    if (ret===false)
-    {
-        const  erro = Comunicado.novo('FNC','Falha no comando SQL','O comando SQL apresenta algum erro').object;
-        return res.status(409).json(erro);
-    }
+    // if (ret===false)
+    // {
+    //     const  erro = Comunicado.novo('FNC','Falha no comando SQL','O comando SQL apresenta algum erro').object;
+    //     return res.status(409).json(erro);
+    // }
 
-  //if (ret===true)
-  //{
+  if (ret===true)
+  {
         const sucesso = Comunicado.novo('ABS','Alteração bem sucedida','O foto foi atualizado com sucesso').object;
         return res.status(201).json(sucesso);
-  //}
+  }
 }
 
 // para a rota de DELETE
@@ -124,7 +123,7 @@ async function remocao (req, res)
     
     const id = req.params.id;
     let ret = await Fotos.recupereUm(id);
-
+    
     if (ret===null)
     {
         const  erro = Comunicado.novo('CBD','Sem conexão com o BD','Não foi possível estabelecer conexão com o banco de dados').object;

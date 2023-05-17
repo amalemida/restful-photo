@@ -40,6 +40,7 @@ async function ativacaoDoServidor ()
     app.delete('/fotos/:id', rotas.remocao);
     app.get   ('/fotos/:id', rotas.recuperacaoDeUm);
     app.get   ('/fotos'        , rotas.recuperacaoDeTodos);
+    
 
     console.log ('Servidor ativo na porta 3000...');
     app.listen(3000);
