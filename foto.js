@@ -1,48 +1,30 @@
 class Foto {
-    #id
     #ra
-    #longi
     #lat
-    #data
-    #imagem
+    #lon
+    #img
 
-    constructor(ra, longi, lat, data, imagem) {
+    constructor(ra, lat, lon, img) {
         this.ra = ra;
-        this.longi = longi;
         this.lat = lat;
-        this.data = data;
-        this.imagem = imagem;
-    }
-
-    get id() {
-        return this.#id
+        this.lon = lon;
+        this.img = img;
     }
 
     get ra() {
         return this.#ra
     }
 
-    get longi() {
-        return this.#longi
+    get lon() {
+        return this.#lon
     }
 
     get lat() {
         return this.#lat
     }
 
-    get data() {
-        return this.#data
-    }
-
-    get imagem() {
-        return this.#imagem
-    }
-
-    set id(id) {
-        if (id === undefined || typeof id !== 'number' || isNaN(id) || id <= 0)
-            throw ('id inválido');
-
-        this.#id = id;
+    get img() {
+        return this.#img
     }
 
     set ra(ra) {
@@ -52,37 +34,30 @@ class Foto {
         this.#ra = ra;
     }
 
-    set longi(longi) {
-       if (longi === undefined || typeof longi !== 'string' || longi === "")
-            throw ('longi inválido');
-
-        this.#longi = longi;
-    }
-
     set lat(lat) {
         if (lat === undefined || typeof lat !== 'string' || lat === "")
-            throw ('lat inválido');
+            throw ('latitude inválida');
 
         this.#lat = lat;
     }
 
-    set data(data) {
-       if(data === undefined || typeof data !== 'string' || data === "")
-            throw ('data inválido');
+    set lon(lon) {
+        if (lon === undefined || typeof lon !== 'string' || lon === "")
+            throw ('longitute inválida');
 
-        this.#data = data;
+        this.#lon = lon;
     }
 
-    set imagem(imagem) {
-       if (imagem === undefined || typeof imagem !== 'string' || imagem === "")
-            throw ('imagem inválido');
+    set img(img) {
+        if (img === undefined || typeof img !== 'string' || img === "")
+            throw ('Imagem inválida');
 
-        this.#imagem = imagem;
+        this.#img = img;
     }
 }
 
-function novo(ra, longi, lat, data, imagem) {
-    return new Foto(ra, longi, lat, data, imagem);
+function novo(ra, lat, lon, img) {
+    return new Foto(ra, lat, lon, img);
 }
 
 module.exports = { novo }

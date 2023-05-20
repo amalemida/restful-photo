@@ -6,20 +6,20 @@ const Comunicado = require ('./comunicado.js');
 // para a rota de CREATE
 async function inclusao (req, res)
 {
-    if (Object.values(req.body).length!=5 || !req.body.ra || !req.body.longi || !req.body.lat || !req.body.data || !req.body.imagem )
+    if (Object.values(req.body).length!=4 || !req.body.ra || !req.body.lon || !req.body.lat || !req.body.img )
     {
-        const erro = Comunicado.novo('DdI','Dados inesperados','Não foram fornecidos exatamente as 5 informaçães esperadas de um foto (ra, longi, lat, data e imagem)').object;
+        const erro = Comunicado.novo('DdI','Dados inesperados','Não foram fornecidas exatamente as 4 informaçães esperadas de uma foto (ra, lon, lat e img)').object;
         return res.status(422).json(erro);
     } 
     
     let foto;
     try
     {
-        foto = Foto.novo (req.body.ra,req.body.longi,req.body.lat,req.body.data,req.body.imagem );
+        foto = Foto.novo (req.body.ra,req.body.lat,req.body.lon,req.body.img );
     }
     catch (excecao)
     {
-        const erro = Comunicado.novo('TDE','Dados de tipos errados','Id e ra devem ser um numero natural positivo, longi e lat devem ser um número espaciais').object;
+        const erro = Comunicado.novo('TDE','Dados de tipos errados','RA deve ser um numero natural positivo, lat, lon e img devem ser uma string').object;
         return res.status(422).json(erro);
     }
 
@@ -33,81 +33,75 @@ async function inclusao (req, res)
 
     if (ret===false)
     {
-        const  erro = Comunicado.novo('LJE','Foto já existe','Já há foto cadastrada com o código informado').object;
+        const  erro = Comunicado.novo('FJE','Foto já existe','Já há foto cadastrada com o código informado').object;
         return res.status(409).json(erro);
     }
 
-  //if (ret===true)
-  //{
-        const  sucesso = Comunicado.novo('IBS','Inclusão bem sucedida','O foto foi incluído com sucesso').object;
+        const  sucesso = Comunicado.novo('IBS','Inclusão bem sucedida','A foto foi incluída com sucesso').object;
         return res.status(201).json(sucesso);
-  //}
 }
 
 // para a rota de UPDATE
 async function atualizacao (req, res)
 {
-    if (Object.values(req.body).length!=5 || !req.body.ra || !req.body.longi || !req.body.lat || !req.body.data || !req.body.imagem)
+    if (Object.values(req.body).length!=4 || !req.body.ra || !req.body.lat || !req.body.lon || !req.body.img)
     {
-        const erro = Comunicado.novo('DdI','Dados inesperados','Não foram fornecidos exatamente as 5 informações esperadas de uma foto (ra atual, novo longi e novo lat)').object;
+        const erro = Comunicado.novo('DdI','Dados inesperados','Não foram fornecidas exatamente as 4 informações esperadas de uma foto (ra novo, novo lon, nova lat e nova img)').object;
         return res.status(422).json(erro);
     }
     
     let foto;
     try
     {
-        foto = Foto.novo (req.body.ra, req.body.longi, req.body.lat, req.body.data, req.body.imagem );
+        foto = Foto.novo (req.body.ra,req.body.lat,req.body.lon,req.body.img);
     }
     catch (excecao)
     {
-        const erro = Comunicado.novo('TDE','Dados de tipos errados','Codigo deve ser um numero natural positivo, longi deve ser um texto não vazio e lat deve ser um número real positivo').object;
+        const erro = Comunicado.novo('TDE','Dados de tipos errados','Codigo deve ser um numero natural positivo, lon deve ser um texto não vazio e lat deve ser um número real positivo').object;
         return res.status(422).json(erro);
     }
 
     const id = req.params.id;
      
-    // if (id!=foto.id)
-    // {
-    //     const erro = Comunicado.novo('TMC','Mudança de código','Tentativa de mudar o código do foto').object;
-    //     return res.status(400).json(erro);    
-    // }
-    
     let ret = await Fotos.recupereUm(id);
-    // if (ret===null)
-    // {
-    //     const  erro = Comunicado.novo('CBD','Sem conexão com o BD','Não foi possível estabelecer conexão com o banco de dados').object;
-    //     return res.status(500).json(erro);
-    // }
+    if (ret===null)
+    {
+        const  erro = Comunicado.novo('CBD','Sem conexão com o BD','Não foi possível estabelecer conexão com o banco de dados').object;
+        return res.status(500).json(erro);
+    }
 
-    // if (ret===false)
-    // {
-    //     const  erro = Comunicado.novo('FNC','Falha no comando SQL','O comando SQL apresenta algum erro').object;
-    //     return res.status(409).json(erro);
-    // }
+    if (ret===false)
+    {
+        const  erro = Comunicado.novo('FNC','Falha no comando SQL','O comando SQL apresenta algum erro').object;
+        return res.status(409).json(erro);
+    }
 
-    // if (ret.length==0)
-    // {
-    //     const erro = Comunicado.novo('LNE','Foto inexistente','Não há foto cadastrado com o código informado').object;
-    //     return res.status(404).json(erro);
-    // }
+    if (ret.length===0)
+    {
+        const erro = Comunicado.novo('FNE','Foto inexistente','Não há foto cadastrada com o código informado').object;
+        return res.status(404).json(erro);
+    }
+
+    foto.id = parseInt(id);
 
     ret = await Fotos.atualize(foto);
 
-    // if (ret===null)
-    // {
-    //     const  erro = Comunicado.novo('CBD','Sem conexão com o BD','Não foi possível estabelecer conexão com o banco de dados').object;
-    //     return res.status(500).json(erro);
-    // }
+    if (ret===null)
+    {
+        const  erro = Comunicado.novo('CBD','Sem conexão com o BD','Não foi possível estabelecer conexão com o banco de dados').object;
+        return res.status(500).json(erro);
+    }
 
-    // if (ret===false)
-    // {
-    //     const  erro = Comunicado.novo('FNC','Falha no comando SQL','O comando SQL apresenta algum erro').object;
-    //     return res.status(409).json(erro);
-    // }
+    if (ret===false)
+    {
+        const  erro = Comunicado.novo('FNC','Falha no comando SQL','O comando SQL apresenta algum erro').object;
+        return res.status(409).json(erro);
+    }
 
   if (ret===true)
   {
-        const sucesso = Comunicado.novo('ABS','Alteração bem sucedida','O foto foi atualizado com sucesso').object;
+        const sucesso = Comunicado.novo('ABS','Alteração bem sucedida','Atualização realizada com sucesso').object;
+
         return res.status(201).json(sucesso);
   }
 }
@@ -138,7 +132,7 @@ async function remocao (req, res)
 
     if (ret.length==0)
     {
-        const erro = Comunicado.novo('LNE','Foto inexistente','Não há foto cadastrado com o código informado').object;
+        const erro = Comunicado.novo('FNE','Foto inexistente','Não há foto cadastrada com o código informado').object;
         return res.status(404).json(erro);
     }
 
@@ -156,11 +150,8 @@ async function remocao (req, res)
         return res.status(409).json(erro);
     }
 
-  //if (ret===true)
-  //{
-        const sucesso = Comunicado.novo('RBS','Remoção bem sucedida','O foto foi removido com sucesso').object;
+        const sucesso = Comunicado.novo('RBS','Remoção bem sucedida','A foto foi removida com sucesso').object;
         return res.status(200).json(sucesso);
-  //}    
 }
 
 // para a segunda rota de READ (um)
@@ -173,6 +164,8 @@ async function recuperacaoDeUm (req, res)
     }
 
     const id = req.params.id;
+
+
 
     const ret = await Fotos.recupereUm(id);
 
@@ -190,7 +183,7 @@ async function recuperacaoDeUm (req, res)
 
     if (ret.length==0)
     {
-        const erro = Comunicado.novo('LNE','Foto inexistente','Não há foto cadastrado com o código informado').object;
+        const erro = Comunicado.novo('FNE','Foto inexistente','Não há foto cadastrada com o código informado').object;
         return res.status(404).json(erro);
     }
 

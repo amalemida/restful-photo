@@ -7,8 +7,8 @@ async function inclua (foto)
 
     try
     {
-        const sql     = 'INSERT INTO fotos (ra,longi,lat,data,imagem) VALUES (?,?,?,?,?)';
-        const dados   = [foto.ra,foto.longi,foto.lat,foto.data,foto.imagem];
+        const sql     = 'INSERT INTO fotos (ra,lat,lon,img) VALUES (?,?,?,?)';
+        const dados   = [foto.ra,foto.lat,foto.lon,foto.img];
         await conexao.query (sql, dados);
         return true;
     }
@@ -25,8 +25,8 @@ async function atualize (foto)
 
     try
     {
-        const sql   = 'UPDATE fotos SET ra=?,longi=?,lat=?,data=?,imagem=? WHERE id=?';
-        const dados = [foto.ra,foto.longi,foto.lat,foto.data,foto.imagem];
+        const sql   = 'UPDATE fotos SET ra=?,lon=?,lat=?,img=? WHERE id=?';
+        const dados = [foto.ra,foto.lon,foto.lat,foto.img,foto.id];
         await conexao.query (sql,dados);
         return true;
     }
