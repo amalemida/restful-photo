@@ -54,15 +54,15 @@ async function remova (id)
     }
 }
 
-async function recupereUm (id)
+async function recupereUm (ra)
 {
     const conexao = await bd.getConexao();
     if (conexao==null) return null;
 
     try
     {
-        const  sql     = 'SELECT * FROM fotos WHERE id=?';
-        const  dados   = [id];
+        const  sql     = 'SELECT * FROM fotos WHERE ra=?';
+        const  dados   = [ra];
         const [linhas] = await conexao.execute(sql,dados);
         return linhas;
     }

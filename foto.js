@@ -28,7 +28,7 @@ class Foto {
     }
 
     set ra(ra) {
-        if (ra === undefined || typeof ra !== 'number' || isNaN(ra) || ra !== parseInt(ra) || ra <= 0)
+        if (ra === undefined || typeof ra !== 'string' || ra ==="")
             throw ('RA inválido');
 
         this.#ra = ra;

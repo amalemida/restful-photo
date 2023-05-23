@@ -163,11 +163,9 @@ async function recuperacaoDeUm (req, res)
         return res.status(422).json(erro);
     }
 
-    const id = req.params.id;
+    const ra = req.params.ra;
 
-
-
-    const ret = await Fotos.recupereUm(id);
+    const ret = await Fotos.recupereUm(ra);
 
     if (ret===null)
     {
