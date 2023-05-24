@@ -41,7 +41,9 @@ async function ativacaoDoServidor ()
     app.get   ('/fotos/:ra', rotas.recuperacaoDeUm);
     app.get   ('/fotos'        , rotas.recuperacaoDeTodos);
         
+    const porta = 3000;
+    const  host = '0.0.0.0';
     console.log ('Servidor ativo na porta 3000...');
-    app.listen(3000);
+    app.listen(porta, host);
 }
 ativacaoDoServidor();
