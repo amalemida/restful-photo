@@ -3,10 +3,10 @@
 FROM node:16
 
 # Set the working directory in the container
-WORKDIR /
+WORKDIR /RESTFUL-PHOTO
 
 # Copy the application files into the working directory
-COPY . /
+COPY . /RESTFUL-PHOTO
 
 # Install the application dependencies
 RUN npm install
