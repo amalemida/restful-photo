@@ -3,15 +3,19 @@
 FROM node:16
 
 # Set the working directory in the container
-WORKDIR /RESTFUL-PHOTO
+WORKDIR /app
 
 # Copy the application files into the working directory
-COPY . /RESTFUL-PHOTO
+COPY package*.json ./
 
 # Install the application dependencies
 RUN npm install
 
+COPY . .
+
+EXPOSE 3000
+
 # Define the entry point for the container
 CMD ["npm", "start"]
 
-EXPOSE 3000
+
