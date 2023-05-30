@@ -72,6 +72,24 @@ async function recupereUm (id)
     }
 }
 
+async function recuperePorRa (ra)
+{
+    const conexao = await bd.getConexao();
+    if (conexao==null) return null;
+
+    try
+    {
+        const  sql     = 'SELECT * FROM fotos WHERE ra=?';
+        const  dados   = [ra];
+        const [linhas] = await conexao.execute(sql,dados);
+        return linhas;
+    }
+    catch (excecao)
+    {
+        return false;
+    }
+}
+
 async function recupereTodos ()
 {
     const conexao = await bd.getConexao();
@@ -89,7 +107,7 @@ async function recupereTodos ()
     }
 }
 
-module.exports = {inclua, atualize, remova, recupereUm, recupereTodos}
+module.exports = {inclua, atualize, remova, recupereUm, recupereTodos, recuperePorRa}
 
 
 

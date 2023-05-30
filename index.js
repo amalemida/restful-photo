@@ -38,7 +38,8 @@ async function ativacaoDoServidor ()
     app.post  ('/fotos'        , rotas.inclusao); 
     app.put   ('/fotos/:id', rotas.atualizacao);
     app.delete('/fotos/:id', rotas.remocao);
-    app.get   ('/fotos/:ra', rotas.recuperacaoDeUm);
+    app.get   ('/fotos/:id', rotas.recuperacaoDeUm);
+    app.get   ('/fotos/:ra', rotas.recuperacaoPorRa);
     app.get   ('/fotos'        , rotas.recuperacaoDeTodos);
         
     const porta = 3000;
