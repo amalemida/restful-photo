@@ -61,8 +61,8 @@ async function recupereUm (ra)
 
     try
     {
-        const  sql     = 'SELECT * FROM fotos WHERE ra=?';
-        const  dados   = [ra];
+        const  sql     = 'SELECT * FROM fotos WHERE id=?';
+        const  dados   = [id];
         const [linhas] = await conexao.execute(sql,dados);
         return linhas;
     }
