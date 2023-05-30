@@ -1,6 +1,8 @@
 const express  = require ('express');
 const bd       = require ('./bd.js');
 const rotas    = require ('./rotas.js');
+const env   = require('dotenv').config();
+
 
 function middleWareGlobal (req, res, next)
 {

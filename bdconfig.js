@@ -1,10 +1,10 @@
 module.exports = {
-  
-  host: 'us-cdbr-east-06.cleardb.net',
+ 
+  host: process.env.NODE_MYSQL_SERVIDOR,
 
-  user: 'b9c9cc3e2a620d',
+  user: process.env.NODE_MYSQL_USUARIO,
 
-  password: 'e67c3614',
+  password: process.env.NODE_MYSQL_SENHA,
 
-  database: 'heroku_3d1f304c7e13b30'
+  database: process.env.NODE_MYSQL_BD
 };
