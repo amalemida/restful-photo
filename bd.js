@@ -1,7 +1,5 @@
 const mysql    = require("mysql2/promise");
 const bdConfig = require('./bdconfig.js');
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 async function getConexao ()
 {
