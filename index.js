@@ -36,7 +36,7 @@ async function ativacaoDoServidor ()
     app.use(middleWareGlobal); // app.use cria o middleware global
 
     app.post  ('/fotos'        , rotas.inclusao); 
-    app.put   ('/fotos/:id', rotas.atualizacao);
+    app.put   ('/fotos/:id' ,rotas.atualizacao);
     app.delete('/fotos/:id', rotas.remocao);
     app.get   ('/fotos/:id', rotas.recuperacaoDeUm);
     app.get   ('/fotos1/:ra', rotas.recuperacaoPorRa);
