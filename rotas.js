@@ -198,7 +198,7 @@ async function recuperacaoPorRa (req, res)
 
     const ra = req.params.ra;
 
-    const ret = await Fotos.recuperacaoPorRa(ra);
+    const ret = await Fotos.recuperePorRa(ra);
 
     if (ret===null)
     {
