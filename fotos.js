@@ -54,7 +54,7 @@ async function remova (id)
     }
 }
 
-async function recupereUm (ra)
+async function recupereUm (id)
 {
     const conexao = await bd.getConexao();
     if (conexao==null) return null;
