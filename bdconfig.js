@@ -1,20 +1,12 @@
+require('dotenv').config();
 module.exports = {
- 
-  // host: 'us-cdbr-east-06.cleardb.net',
 
-  // user: 'b9c9cc3e2a620d',
+  host: process.env.DB_HOST,
 
-  // password: 'e67c3614',
+  user: process.env.DB_USER,
 
-  // database: 'heroku_3d1f304c7e13b30'
+  password: process.env.DB_PASSWORD,
 
+  database: process.env.DB_BD
 
-  
-  host: 'db4free.net',
-
-  user: 'photos',
-
-  password: '2252922597',
-
-  database: 'restfulphoto'
 };
